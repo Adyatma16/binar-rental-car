@@ -1,37 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import Cari from './Cari';
-import Hasil from './Hasil';
-import Detail from './Detail';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'assets/styles/index.css';
+import reportWebVitals from 'reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-        <Routes>
-          <Route exact path="/" element={<App />}/>
-          <Route exact path="/cari">
-            <Route path="" element={<Cari />}/>
-            <Route path=":q" element={<Cari />}/>
-          </Route>
-          <Route exact path="/hasil">
-            <Route path="" element={<Hasil />}/>
-            <Route path=":q" element={<Hasil />}/>
-          </Route>
-          <Route exact path="/detail/:id" element={<Detail />}/>
-        </Routes>
-    </Router>
-  </React.StrictMode>
+  <Router basename="/" history={history}>
+    <App history={history} />
+  </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
